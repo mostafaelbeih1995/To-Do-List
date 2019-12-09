@@ -1,0 +1,14 @@
+body{
+    background-color: #1B205F;
+    background-image: -webkit-linear-gradient(65deg, #A24274 50%, #1B205F,50%);
+}
+
+h1{
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+ul{
+    padding: 20px;
+}
