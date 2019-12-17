@@ -1,6 +1,7 @@
 body{
-    background-color: #1B205F;
-    background-image: -webkit-linear-gradient(65deg, #A24274 50%, #1B205F,50%);
+    background: rgb(0,15,36);
+    background: linear-gradient(90deg, rgba(0,15,36,1) 0%, rgba(9,121,90,1) 35%, rgba(0,116,255,1) 100%);
+
 }
 
 h1{
