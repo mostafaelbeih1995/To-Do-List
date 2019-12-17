@@ -12,16 +12,16 @@
 <body>
         <h1><%= day %> List</h1>
     <div class="justify-content-center row">
-        <div class="col-md-4" align="center">
+        <div class="col-s-4" align="center">
             <ul>
                 <% for(let i=0;i < items.length;i++){ %>
                 <li class="list-group-item"><%= items[i] %> </li>
                 <% } %>
         </ul>
             
-        <form action="/" method="post">       
-            <input type="text" name="newItem">
-            <button type="submit">Add</button>
+        <form action="/" method="post" id = "main">       
+            <input type="text" name="newItem" class="form-control col-s-11">
+            <button type="submit" class="btn btn-primary">Add</button>
             </form>
         </div>
     </div>

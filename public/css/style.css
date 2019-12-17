@@ -13,3 +13,7 @@ h1{
 ul{
     padding: 20px;
 }
+
+#main button{
+    margin-top: 10px;
+}
