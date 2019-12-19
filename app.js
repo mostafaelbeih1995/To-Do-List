@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const Item = require("./models/item");
 const app = express();
-let items = ["Code","Guitar", "Music"]; //items on the to do list
+const mongoose = require("mongoose");
+
 
 
 app.set('view engine', 'ejs');
@@ -16,17 +17,38 @@ app.get("/", (req, res) => {
         month: "long"
     };
 
-    let day = todayDate.toLocaleDateString("en-US",options);
-    res.render("list", {
-        day: day,
-        items: items
+    let day = todayDate.toLocaleDateString("en-US", options);
+    Item.find((err, databaseItems) => {
+        if (err) {
+            console.log("Error retreiving from database")
+        }
+        else {
+            console.log(databaseItems);
+            res.render("list", {
+                day: day,
+                items: databaseItems
+            })
+        }
     })
 });
 
 app.post("/", (req, res) => {
-    items.push(req.body.newItem);
-    res.redirect("/");
+    const newItem = new Item({ name: req.body.newItem });
+    newItem.save().then(() => {
+        res.redirect("/");
+    });
 });
 app.listen(3000, () => {
     console.log("Server Started....");
 });
+
+mongoose.connect("mongodb+srv://mostafaelbeih:Kendrick_lamar_222@cluster0-erbgg.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
+    .then(() => {
+    console.log("Connected to database successfully");
+    })
+    .catch(() => {
+    console.log("Failed to connect to database");
+    });
+
+
+
