@@ -32,6 +32,19 @@ app.get("/", (req, res) => {
     })
 });
 
+app.post("/delete", (req, res) => {
+    const clickedItem = req.body.clicked;
+    console.log(clickedItem);
+    Item.findByIdAndRemove(clickedItem, (err) => {
+        if (!err) {
+            console.log("Deleted successfully");
+        }
+        else {
+            console.log("Trouble deleting from database");
+        }
+        res.redirect("/");
+    });
+});
 app.post("/", (req, res) => {
     const newItem = new Item({ name: req.body.newItem });
     newItem.save().then(() => {
@@ -42,7 +55,7 @@ app.listen(3000, () => {
     console.log("Server Started....");
 });
 
-mongoose.connect("mongodb+srv://mostafaelbeih:Kendrick_lamar_222@cluster0-erbgg.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://mostafaelbeih:Kendrick_lamar_222@cluster0-erbgg.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useFindAndModify: false })
     .then(() => {
     console.log("Connected to database successfully");
     })

@@ -17,3 +17,7 @@ ul{
 #main button{
     margin-top: 10px;
 }
+
+.clicked{
+    text-decoration-line: line-through;
+}
