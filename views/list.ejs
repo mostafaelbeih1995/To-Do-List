@@ -17,13 +17,16 @@
                 <% for(let i=0;i < items.length;i++){ %>
                 <!-- <li class="list-group-item"><%= items[i].name %> </li> -->
                 <form action="/delete" method="post">
-                    <input type = "checkbox"class="list-group-item" name = "clicked" value = "<%= items[i]._id%>"  onclick="mark(this)"><%= items[i].name %> </input>
+                    <div class = "itemList" onclick="mark(this)">
+                            <input type = "hidden"name="clicked" value="<%= items[i]._id%>" onclick="mark(this)"><%= items[i].name %></input>
+                            
+                    </div>
                 </form>
                 <% } %>
             </ul>
             
         <form action="/" method="post" id = "main">       
-            <input type="text" name="newItem" class="form-control col-s-11">
+            <input type="text" name="newItem" class="form-control col-s-11" autocomplete="off">
             <button type="submit" class="btn btn-primary">Add</button>
             </form>
         </div>

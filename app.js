@@ -3,7 +3,12 @@ const bodyParser = require("body-parser");
 const Item = require("./models/item");
 const app = express();
 const mongoose = require("mongoose");
+const listSchema = {
+    name: String,
+    items: [Item]
+};
 
+const List = mongoose.model("List", listSchema);
 
 
 app.set('view engine', 'ejs');
@@ -32,6 +37,13 @@ app.get("/", (req, res) => {
     })
 });
 
+// app.get("/:customListName", (req,res) => {
+//     const customLinkName = req.params.customListName;
+//     const list = new List({
+//         name: customLinkName,
+//         items: 
+//     })
+// });
 app.post("/delete", (req, res) => {
     const clickedItem = req.body.clicked;
     console.log(clickedItem);

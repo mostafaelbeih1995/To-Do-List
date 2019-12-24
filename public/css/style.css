@@ -21,3 +21,11 @@ ul{
 .clicked{
     text-decoration-line: line-through;
 }
+
+.itemList{
+    background-color: white;
+    margin: 0rem;
+    padding: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem
+}
