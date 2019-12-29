@@ -19,7 +19,7 @@
                 <form action="/delete" method="post">
                     <div class = "itemList" onclick="mark(this)">
                             <input type = "hidden"name="clicked" value="<%= items[i]._id%>" onclick="mark(this)"><%= items[i].name %></input>
-                            
+                            <input type = "hidden" name = "listName" value = "<%= day %>"></input>
                     </div>
                 </form>
                 <% } %>

@@ -78,16 +78,27 @@ app.get("/:customListName", (req,res) => {
 });
 app.post("/delete", (req, res) => {
     const clickedItem = req.body.clicked;
-    console.log(clickedItem);
-    Item.findByIdAndRemove(clickedItem, (err) => {
-        if (!err) {
-            console.log("Deleted successfully");
-        }
-        else {
-            console.log("Trouble deleting from database");
-        }
-        res.redirect("/");
-    });
+    const listName = req.body.listName;
+
+    if (listName === day) { //orignial list
+        Item.findByIdAndRemove(clickedItem, (err) => {
+            if (!err) {
+                console.log("Deleted successfully");
+            }
+            else {
+                console.log("Trouble deleting from database");
+            }
+            res.redirect("/");
+        });      
+    }
+    else {  //new List
+        List.findOneAndUpdate({ name: listName }, { $pull: { items: { _id: clickedItem } } }, (err, foundList) => {
+            if (!err) {
+                res.redirect("/" + listName);
+            }
+        } );
+    }
+    
 });
 app.post("/", (req, res) => {
     const newItem = new Item({ name: req.body.newItem });
